@@ -1,10 +1,11 @@
 body {
     margin: 0;
-    font-family: Monospace, sans-serif;
+    font-family: Monospace, serif;
     color: rgb(0, 0, 0);
     background-color: transparent;
     padding-top: 50px; /* Adjust this value to control the offset */
 }
+
 #canvas-container {
     position: fixed;
     top: 0;
@@ -40,6 +41,15 @@ img {
     opacity: 1;
 }
 
+.titles {
+    display: grid;
+    gap: 15px;
+    justify-content: center space-evenly;
+    text-align: center;
+    font-size: 24px; /* Icon size */
+
+}
+
 
 
 .social-icons {
@@ -47,6 +57,7 @@ img {
     display: flex;
     justify-content: center;
     gap: 15px;
+    padding : 15px;
 }
 
 
@@ -60,7 +71,7 @@ img {
 }
 
 .social-icons a:hover {
-    color: #007bff; /* Blue hover effect, adjust to match your theme */
+    color: #ae00ff; /* Blue hover effect, adjust to match your theme */
 }
 
 .description {
@@ -80,9 +91,33 @@ p {
     line-height: 1.3;
     text-align: justify;
     text-indent: 50px;
+    border-radius: 8px;
+    outline: rgba(0,0,0,150) solid 2px;
+    padding: 15px;
 }
 
 .list {
     font-size: 18px;
 
+}
+
+
+::-webkit-scrollbar {
+  width: 25px;
+  padding-right: 50px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

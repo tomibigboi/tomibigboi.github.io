@@ -2,52 +2,7 @@
 var canvasHeight = window.innerHeight-16;
 var canvasWidth = window.innerWidth-16;
 
-//Background scene
-var alp = 0;
-var a = 0;
-var rainx = 0;
-var rainy = 0;
-var rainadd = 0;
-function RainBackground()
-{
-    //movementIllusion++;
-    //background + effect
-    alp += 1.5; 
-    a = Math.floor(Math.sin(alp)*100);
-    background(255,255,255,a);
-    /////////////////////////////////////////////////////////////////////
-    //stars
-    for (let i = 0; i < 10; i++) {
-        noStroke();
-        fill(255,0,random(255),random(50,255));
-        sizeStars = random(9);
-        rect(random(canvasWidth),random(canvasHeight),sizeStars,sizeStars);
-    }
-    /////////////////////////////////////////////////////////////////////////
-    //rain
-    for (let i = 0; i < 30; i++) {
-        rainx = random(canvasWidth);
-        rainy = random(canvasWidth);
-        rainadd = random(80);
-        stroke(150,random(150,255));
-        line(rainx,rainy,rainx+rainadd,rainy+rainadd);
-    }
-    /*
-    //moon
-    fill(255);
-    stroke(0);
-    circle(canvasWidth/2, canvasHeight/2 , 100);
-
-    //overlapping navy circle for crescent moon
-    stroke("navy");   
-    fill("navy");
-    circle(320,50,100);
-    */
-}
-
-
-
-
+//setting up things 
 function setup() 
 {
     let canvas = createCanvas(windowWidth, windowHeight);
@@ -58,17 +13,51 @@ function setup()
     rectMode(CENTER);
 }
 
-function draw() 
+//Background scene
+var alp = 0;
+var a = 0;
+
+function BackgroundLayer()
 {
-    //Title.show();
-    RainBackground();
-    circlesBackground();
+    //movementIllusion++;
+    //background
+    alp += 1.5; 
+    a = Math.floor(Math.sin(alp)*100);
+    background(255,255,255,a);
 }
 
+function StarsLayer()
+{
+    //stars
+    for (let i = 0; i < 10; i++) {
+        noStroke();
+        fill(255,0,random(255),random(50,255));
+        sizeStars = random(9);
+        rect(random(canvasWidth),random(canvasHeight),sizeStars,sizeStars);
+    }
+}
+
+// Rain Vars
+var rainx = 0;
+var rainy = 0;
+var rainadd = 0;
+
+function RainLayer()
+{
+    //rain
+    for (let i = 0; i < 30; i++) {
+        rainx = random(canvasWidth);
+        rainy = random(canvasWidth);
+        rainadd = random(150);
+        stroke(0,random(150,250));
+        strokeWeight(1);
+        line(rainx,rainy,rainx+rainadd,rainy+rainadd);
+    }
+}
 
 let circles = [];
 
-function circlesBackground() {
+function CircleLayer() {
 
     // Add a new circle with a 5% chance each frame
     if (random() < 0.05) {
@@ -110,5 +99,19 @@ function circlesBackground() {
         }
     }
 }
+
+
+
+
+
+function draw() 
+{
+    BackgroundLayer();
+    StarsLayer();
+    RainLayer();
+    CircleLayer();
+}
+
+
 
 
