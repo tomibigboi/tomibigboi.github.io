@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+</head>
+<body>
+<script>
+let circles = [];
+
+function setup() {
+  createCanvas(800, 600);
+}
+
+function draw() {
+  background(220); // Clear canvas each frame
+
+  // Add a new circle with a 5% chance each frame
+  if (random() < 0.05) {
+    circles.push({
+      x: random(width),
+      y: random(height),
+      radius: 0,
+      maxRadius: random(20, 50),
+      growthRate: random(0.5, 2),
+      age: 0,
+      lifespan: 60 // Frames until disappearance
+    });
+  }
+
+  // Update and draw circles
+  for (let i = circles.length - 1; i >= 0; i--) {
+    let c = circles[i];
+    
+    // Grow circle until it reaches max radius
+    if (c.radius < c.maxRadius) {
+      c.radius += c.growthRate;
+    }
+    
+    // Increment age
+    c.age++;
+    
+    // Calculate alpha based on remaining lifespan
+    let alpha = map(c.age, 0, c.lifespan, 255, 0); // Fade from 255 to 0
+    
+    // Draw circle with fading effect
+    noFill();
+    stroke(0, 0, 0, alpha); // Black stroke with variable alpha
+    circle(c.x, c.y, c.radius * 2);
+    
+    // Remove circle if it exceeds lifespan
+    if (c.age > c.lifespan) {
+      circles.splice(i, 1);
+    }
+  }
+}
+</script>
+</body>
+</html>
